@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<package name="shop" extends="struts-default">
+		<interceptors>
+			<interceptor name="InterceptUser" class="com.mk.interceptor.InterceptUser" />
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="myStack">
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="InterceptUser" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 设置默认拦截 -->
+		<default-interceptor-ref name="myStack" />
+		
+		<!-- 设置全局视图 -->
+		<global-results>
+			<result name="input">/WEB-INF/jsp/login.jsp</result>
+		</global-results>
+	</package>
+</struts>
